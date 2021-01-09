@@ -1,0 +1,29 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+
+      <div class="mt-2 mb-4 bg-light d-inline-block">
+        <h4 class="px-2 pt-2">商品一覧<small>(全<%= @items.length %>件)<small></h4>
+      </div>
+
+      <div class="row">
+        <% @items.each do |item| %>
+
+            <div class="col-4 col-md-3 px-2">
+              <div class="card">
+                <%= attachment_image_tag item, :image, :fill, 400, 300, format: "jpg", class: "card-img-top" %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= item.name %></h5>
+                  <h5 class="card-text">￥<%= item.price %></h5>
+                </div>
+              </div>
+            </div>
+
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+
+</div>
