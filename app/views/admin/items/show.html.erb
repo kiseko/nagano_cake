@@ -50,7 +50,7 @@
               </p>
             </div>
             <div class="col-sm-8">
-              <h5 class="pt-2"><%= @item.price %>円</h5>
+              <h5 class="pt-2"><%= @item.price.to_s(:delimited) %>円</h5>
             </div>
           </div>
 
