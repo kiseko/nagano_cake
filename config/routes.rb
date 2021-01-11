@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :admins, module: "admins"
-  devise_for :customers, module: "customers"
 
   namespace :admin do
     root to: "homes#top"
@@ -15,6 +13,10 @@ Rails.application.routes.draw do
     delete "cart_items" => "cart_items#destroy_all", as: "destroy_all_cart_items"
     resources :orders, only: [:new, :create, :index, :show]
     resource :customers, only: [:show, :edit, :update]
+    get "customers/leave" => "customers#leave", as: "leave_customer"
   end
+
+  devise_for :admins, module: "admins"
+  devise_for :customers, module: "customers"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
