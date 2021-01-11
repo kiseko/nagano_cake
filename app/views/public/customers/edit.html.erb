@@ -3,7 +3,7 @@
     <div class="col-md-10 mx-auto">
 
       <div class="mt-2 mb-4 bg-light d-inline-block">
-        <h4 class="px-2 pt-2">新規会員登録</h4>
+        <h4 class="px-2 pt-2">会員情報編集</h4>
       </div>
 
       <%= form_with model: current_customer, url: customers_path, local: true do |f| %>
@@ -42,7 +42,7 @@
               <p class="col-md-3 pt-1">メールアドレス</p>
               <%= f.text_field :email, autocomplete: "email", placeholder:"sample@example.com", class: "form-control col-md-9" %>
             </div>
-            
+
             <div class="row">
           <div class="col-6 col-md-5 offset-md-3 p-0">
             <%= f.submit "編集内容を保存", class:"btn btn-success mt-3 px-4" %>
