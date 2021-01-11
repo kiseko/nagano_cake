@@ -1,1 +1,19 @@
-<h2>order</h2>
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+
+      <div class="mt-4 mb-4">
+        <h4 class="px-2 pt-2">商品一覧</h4>
+      </div>
+      
+      <%= form_with model: @order, url: orders_path, local: true do |f| %>
+        <h4 class="">支払方法</h4>
+        <%= f.radio_button :payment_method, :credit %>
+        <%= f.label "クレジットカード" %>
+        <%= f.radio_button :payment_method, :bank %>
+        <%= f.label "銀行振込" %>
+      <% end %>
+
+    </div>
+  </div>

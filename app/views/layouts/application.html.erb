@@ -36,7 +36,7 @@
             </li>
             <% elsif customer_signed_in? %>
               <li class="nav-item">
-              <%= link_to "マイページ", admin_items_path, class: 'nav-link ml-3 btn border border-light' %>
+              <%= link_to "マイページ", customers_path, class: 'nav-link ml-3 btn border border-light' %>
             </li>
             <li class="nav-item">
               <%= link_to "商品一覧", items_path, class: 'nav-link ml-3 btn border border-light' %>
