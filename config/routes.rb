@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :cart_items, only: [:create, :index, :update, :destroy]
     delete "cart_items" => "cart_items#destroy_all", as: "destroy_all_cart_items"
     resources :orders, only: [:new, :create, :index, :show]
+    resources :addresses, except: [:new, :show]
   end
 
   devise_for :admins, module: "admins"
