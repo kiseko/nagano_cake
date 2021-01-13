@@ -5,18 +5,6 @@ class Public::OrdersController < ApplicationController
     @addresses = current_customer.addresses
   end
 
-  def create
-    @order = current_customer.orders.new(order_params)
-    @order.save
-    redirect_to thank_order_path
-  end
-
-  def index
-  end
-
-  def show
-  end
-
   def confirm
     @order = current_customer.orders.new(order_params)
     if params[:select_address] == "customer_address"
@@ -34,11 +22,43 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items
     @order.postage = 800
     render action: :confirm
+  end
 
+  def create
+    @order = current_customer.orders.new(order_params)
+    @order.save
+
+    @cart_items = current_customer.cart_items
+    @cart_items.each do |cart_item|
+      OrderItem.create(
+        order_id: @order.id,
+        item_id: cart_item.item.id,
+        amount: cart_item.amount,
+        purchase_price: cart_item.item.price
+      )
+    end
+
+    @cart_items.destroy_all
+    redirect_to thank_order_path
   end
 
   def thank
   end
+
+  def index
+    @orders = current_customer.orders
+  end
+
+  def show
+    @order = Order.find(params[:id])
+    @order_items = @order.order_items
+  end
+
+  #def destroy
+    #@order = Order.find(params[:id])
+    #@order.destroy
+    #redirect_to orders_path
+  #end
 
   private
 
