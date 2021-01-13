@@ -14,11 +14,11 @@
                 <h5 class="pb-1"><strong>支払方法</strong></h5>
                 <div class="form_check ml-5">
                   <div>
-                    <%= f.radio_button :payment_method, :credit, checked: true %>
+                    <%= f.radio_button :payment_method, "credit", checked: true %>
                     <%= f.label :payment_method, "クレジットカード", class: "form-check-label" %>
                   </div>
                   <div>
-                    <%= f.radio_button :payment_method, :bank %>
+                    <%= f.radio_button :payment_method, "bank" %>
                     <%= f.label :payment_method, "銀行振込", class: "form-check-label" %>
                   </div>
                 </div>

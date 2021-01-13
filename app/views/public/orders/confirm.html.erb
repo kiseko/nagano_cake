@@ -75,10 +75,9 @@
           <h5 class=""><strong>支払い方法</strong></h5>
         </div>
         <div class="col-8">
-          <%= @order.payment_method %>
-          <% if @order.payment_method == :credit %>
+          <% if @order.payment_method == "credit" %>
             <p>クレジットカード</p>
-          <% elsif @order.payment_method == :bank %>
+          <% elsif @order.payment_method == "bank" %>
             <p>銀行振込</p>
           <% end %>
         </div>
