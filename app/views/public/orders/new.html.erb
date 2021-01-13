@@ -9,51 +9,51 @@
 
         <div class="row">
           <div class="col-md-9 mx-auto">
-            <%= form_with model: @order, url: orders_path, local: true do |f| %>
+            <%= form_with model: @order, url: confirm_order_path, local: true do |f| %>
               <div class="pb-3">
-                <h5 class=""><strong>支払方法</strong></h5>
+                <h5 class="pb-1"><strong>支払方法</strong></h5>
                 <div class="form_check ml-5">
                   <div>
-                    <%= f.radio_button :payment_method, :credit, class: "form-check-input" %>
+                    <%= f.radio_button :payment_method, :credit, checked: true %>
                     <%= f.label :payment_method, "クレジットカード", class: "form-check-label" %>
                   </div>
                   <div>
-                    <%= f.radio_button :payment_method, :bank, class: "form-check-input" %>
-                    <%= f.label :payment_method, "銀行振込" %>
+                    <%= f.radio_button :payment_method, :bank %>
+                    <%= f.label :payment_method, "銀行振込", class: "form-check-label" %>
                   </div>
                 </div>
               </div>
 
               <div class="pb-4">
-                <h5 class=""><strong>お届け先</strong></h5>
+                <h5 class="pb-1"><strong>お届け先</strong></h5>
 
-                <div class="form_check ml-5">
-                  <%= f.radio_button :customer_id, current_customer.id, checked: true, class: "form-check-input" %>
+                <div class="form_check ml-5 pb-4">
+                  <%= radio_button_tag :select_address, "customer_address", checked: true %>
                   <%= f.label :customer_id, "ご⾃⾝の住所", class: "form-check-label" %>
-                  <div>
+                  <div class="pt-2">
                     <%= "〒#{current_customer.postal_code}　#{current_customer.address}" %>
-                    <%= "#{current_customer.last_name}" %><%= "#{current_customer.first_name}" %>
+                    <%= current_customer.last_name %><%= current_customer.first_name %>
                   </div>
                 </div>
 
-                <div class="form_check ml-5">
-                  <%= f.radio_button :customer_id, 0, class: "form-check-input" %>
+                <div class="form_check ml-5 pb-4">
+                  <%= radio_button_tag :select_address, "registration_address" %>
                   <%= f.label :customer_id, "登録済住所から選択", class: "form-check-label" %>
-                  <div>
-                    <%= f.select :postage, @addresses.map{|a| ["〒#{a.postal_code}　#{a.address}　#{a.name}", a.id]} %>
+                  <div class="pt-2">
+                    <%= collection_select :r_ad, :registration_address, @addresses, :id, :registration_address_info %>
                   </div>
                 </div>
 
                 <div class="form_check ml-5">
-                  <%= f.radio_button :customer_id, 0, class: "form-check-input" %>
+                  <%= radio_button_tag :select_address, "new_address" %>
                   <%= f.label :customer_id, "新しいお届け先", class: "form-check-label" %>
 
-                  <div class="form-group row">
-                    <p class="col-lg-3 pt-1 text-nowrap">郵便番号<br>(ハイフンなし)</p>
+                  <div class="form-group row pt-2 pb-1 mb-lg-0">
+                    <p class="col-lg-3 text-nowrap">郵便番号<br><small>(ハイフンなし)</small></p>
                     <%= f.text_field :postal_code, placeholder:"0000000", class: "form-control col-lg-6" %>
                   </div>
 
-                  <div class="form-group row">
+                  <div class="form-group row pb-2">
                     <p class="col-lg-3 pt-1">住所</p>
                     <%= f.text_field :address, placeholder:"東京都渋⾕区代々⽊神園町0-0", class: "form-control col-lg-6" %>
                   </div>
