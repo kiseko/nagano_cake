@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   scope module: :public do
     root to: "homes#top"
-    get "about" => "homes#about"
+    get "about" => "homes#about", as: "about"
     get "customers/leave" => "customers#leave", as: "leave_customer"
     patch "customers/resign" => "customers#resign", as: "resign_customer"
     resource :customers, only: [:show, :edit, :update]
