@@ -1,0 +1,132 @@
+<div class="container text-nowrap">
+
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+
+      <div class="mt-4 mb-4 bg-light d-inline-block">
+        <h4 class="px-2 pt-2">注文履歴詳細</h4>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <p class="mb-0">購入者</p>
+        </div>
+        <div class="col-sm-8">
+          <p class="lead"><%= @order.customer.last_name + @order.customer.first_name %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <p class="mb-0">注文日</p>
+        </div>
+        <div class="col-sm-8">
+          <p class="lead d-inline-block"><%= @order.created_at %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <p class="mb-0">配送先</p>
+        </div>
+        <div class="col-sm-8">
+          <p class="lead mb-0">〒<%= @order.postal_code %></p>
+          <p class="lead mb-0"><%= @order.address %></p>
+          <p class="lead"><%= @order.name %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-4">
+          <p class="mb-0">支払方法</p>
+        </div>
+        <div class="col-sm-8">
+          <%if @order.payment_method == "credit" %>
+            <p class="lead">クレジットカード</p>
+          <%elsif @order.payment_method == "bank" %>
+            <p class="lead">銀行振込</p>
+          <% end %>
+        </div>
+      </div>
+
+      <%= form_with model: @order, url: admin_order_path(@order.id), local: true do |f| %>
+       <div class="row form-group">
+          <p class="col-sm-4 mb-0">注文ステータス</p>
+          <div class="col-sm-auto">
+            <%= f.select :status, [["入金待ち","入金待ち"],["入金確認","入金確認"],["製作中","製作中"],["発送準備中","発送準備中"],["発送済み","発送済み"]], class: "form-control" %>
+            <%= f.submit "更新", class: "btn btn-success" %>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-lg-9">
+          <table class="table table-bordered table-hover">
+            <thead class="bg-light">
+              <tr>
+                <th>商品名</th>
+                <th>単価(税込)</th>
+                <th>数量</th>
+                <th>小計</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @order.order_items.each do |order_item| %>
+                <tr>
+                  <td>
+                    <%= order_item.item.name %>
+                  </td>
+                  <td>
+                    <%= order_item.purchase_price.to_s(:delimited) %>
+                  </td>
+                  <td  class="form-group">
+                    <%= order_item.amount %>
+                  </td>
+                  <td>
+                    <% subtotal = order_item.item.price*order_item.amount %>
+                    <%= subtotal.to_s(:delimited) %>
+                  </td>
+                  <td  class="form-group">
+                    <%= form_with model: order_item, url: admin_order_item_path(order_item.id), local: true do |f| %>
+                      <%= f.select :production_status, [["製作不可","製作不可"],["製作待ち","製作待ち"],["製作中","製作中"],["製作完了","製作完了"]], class: "form-control" %>
+                      <%= f.submit "更新", class: "btn btn-success" %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-8 col-sm-6 col-lg-3 mx-auto">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <td class="bg-light">送料</td>
+                <td>
+                  <%= @order.postage.to_s(:delimited) %>
+                </td>
+              </tr>
+              <tr>
+                <td class="bg-light">商品合計</td>
+                <td>
+                  <%= @order.total_price %>
+                </td>
+              </tr>
+              <tr>
+                <td class="bg-light">請求金額</td>
+                <td>
+                  <% amount_billed = @order.postage + @order.total_price %>
+                  <%= amount_billed.to_s(:delimited) %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
