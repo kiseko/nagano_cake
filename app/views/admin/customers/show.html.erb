@@ -28,7 +28,7 @@
             <p class="lead pl-2 d-inline-block"><%= @customer.first_name %></p>
           </div>
         </div>
-        
+
         <div class="row">
           <div class="col-sm-4">
             <p>フリガナ</p>
@@ -44,7 +44,7 @@
             <p>郵便番号</p>
           </div>
           <div class="col-sm-8">
-            <p class="lead pt-2"><%= @customer.postal_code %></p>
+            <p class="lead"><%= @customer.postal_code %></p>
           </div>
         </div>
 
@@ -53,7 +53,7 @@
             <p>住所</p>
           </div>
           <div class="col-sm-8">
-            <p class="lead pt-2"><%= @customer.address %></p>
+            <p class="lead"><%= @customer.address %></p>
           </div>
         </div>
 
@@ -62,7 +62,7 @@
             <p>電話番号</p>
           </div>
           <div class="col-sm-8">
-            <p class="lead pt-2"><%= @customer.telephone_number %></p>
+            <p class="lead"><%= @customer.telephone_number %></p>
           </div>
         </div>
 
@@ -71,7 +71,7 @@
             <p>メールアドレス</p>
           </div>
           <div class="col-sm-8">
-            <p class="lead pt-2"><%= @customer.email %></p>
+            <p class="lead"><%= @customer.email %></p>
           </div>
         </div>
 
@@ -87,7 +87,7 @@
             <% end %>
             <div class="pt-4">
               <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success" %>
-              <%= link_to "注文一覧を見る", admin_root_path, class: "btn btn-primary ml-5" %>
+              <%= link_to "注文一覧を見る", admin_customer_orders_path(@customer.id), class: "btn btn-primary ml-5" %>
             </div>
           </div>
         </div>

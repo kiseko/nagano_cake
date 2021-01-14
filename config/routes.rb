@@ -4,7 +4,10 @@ Rails.application.routes.draw do
     root to: "homes#top"
     resources :items
     resources :genres, only: [:create, :index, :edit, :update]
+    get "customers/:id/orders" => "customers#order", as: "customer_orders"
     resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:show, :update]
+    resources :order_items, only: [:update]
   end
 
   scope module: :public do
@@ -20,6 +23,7 @@ Rails.application.routes.draw do
     get "orders/thank" => "orders#thank", as: "thank_order"
     resources :orders, only: [:new, :create, :index, :show]
     resources :addresses, except: [:new, :show]
+
   end
 
   devise_for :admins, module: "admins"

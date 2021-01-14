@@ -18,6 +18,12 @@ class Admin::CustomersController < ApplicationController
     redirect_to admin_customer_path(@customer)
   end
 
+  def order
+    @customer = Customer.find(params[:id])
+    @orders = @customer.orders
+    render template: "admin/homes/top"
+  end
+
   private
 
   def customer_params
