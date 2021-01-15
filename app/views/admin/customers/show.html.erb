@@ -12,7 +12,7 @@
 
         <div class="row">
           <div class="col-sm-4">
-            <p>会員ID</p>
+            <p class="mb-0">会員ID</p>
           </div>
           <div class="col-sm-8">
             <p class="lead"><%= @customer.id %></p>
@@ -21,7 +21,7 @@
 
         <div class="row">
           <div class="col-sm-4">
-            <p>氏名</p>
+            <p class="mb-0">氏名</p>
           </div>
           <div class="col-sm-8">
             <p class="lead d-inline-block"><%= @customer.last_name %></p>
@@ -31,7 +31,7 @@
 
         <div class="row">
           <div class="col-sm-4">
-            <p>フリガナ</p>
+            <p class="mb-0">フリガナ</p>
           </div>
           <div class="col-sm-8">
             <p class="lead d-inline-block"><%= @customer.last_name_kana %></p>
@@ -41,7 +41,7 @@
 
         <div class="row">
           <div class="col-sm-4">
-            <p>郵便番号</p>
+            <p class="mb-0">郵便番号</p>
           </div>
           <div class="col-sm-8">
             <p class="lead"><%= @customer.postal_code %></p>
@@ -50,7 +50,7 @@
 
         <div class="row">
           <div class="col-sm-4">
-            <p>住所</p>
+            <p class="mb-0">住所</p>
           </div>
           <div class="col-sm-8">
             <p class="lead"><%= @customer.address %></p>
@@ -59,7 +59,7 @@
 
         <div class="row">
           <div class="col-sm-4">
-            <p>電話番号</p>
+            <p class="mb-0">電話番号</p>
           </div>
           <div class="col-sm-8">
             <p class="lead"><%= @customer.telephone_number %></p>
@@ -68,7 +68,7 @@
 
         <div class="row">
           <div class="col-sm-4">
-            <p>メールアドレス</p>
+            <p class="mb-0">メールアドレス</p>
           </div>
           <div class="col-sm-8">
             <p class="lead"><%= @customer.email %></p>
@@ -77,7 +77,7 @@
 
         <div class="row">
           <div class="col-sm-4">
-            <p>会員ステータス</p>
+            <p class="mb-0">会員ステータス</p>
           </div>
           <div class="col-sm-8">
             <% if @customer.is_active? %>

@@ -21,7 +21,7 @@
           <p class="mb-0">注文日</p>
         </div>
         <div class="col-sm-8">
-          <p class="lead d-inline-block"><%= @order.created_at %></p>
+          <p class="lead d-inline-block"><%= @order.created_at.strftime("%Y/%d/%m") %></p>
         </div>
       </div>
 

@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-md-10 mx-auto">
 
-      <div class="mt-2 mb-4 bg-light d-inline-block">
+      <div class="mt-4 mb-4 bg-light d-inline-block">
         <h4 class="px-2 pt-2">ログイン</h4>
       </div>
 
@@ -14,15 +14,15 @@
 
       <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
         <div class="row mx-2">
-          <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="col-lg-9 mx-auto">
 
             <div class="form-group row">
-              <p class="col-lg-3 pt-1">メールアドレス</p>
+              <p class="col-lg-3 pt-1 mb-0">メールアドレス</p>
               <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-lg-9" %>
             </div>
 
             <div class="form-group row">
-              <p class="col-lg-3 pt-1">パスワード</p>
+              <p class="col-lg-3 pt-1 mb-0">パスワード</p>
               <%= f.password_field :password, autocomplete: "current-password", class: "form-control col-lg-9" %>
             </div>
 
@@ -46,7 +46,7 @@
           <p class="d-inline-block">から新規登録を⾏ってください。</p>
         </div>
       </div>
-      
+
     </div>
   </div>
 </div>

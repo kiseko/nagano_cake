@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="min-width: 300px;">
 
   <div class="row">
     <div class="col-md-10 mx-auto">
@@ -7,16 +7,14 @@
         <h4 class="px-2 pt-2">マイページ</h4>
       </div>
 
-      <div class="row mb-3">
-        <h5 class="col-3 col-lg-2 pt-2"><strong>登録情報</strong></h5>
-        <div class="col-auto p-0">
+      <div class="d-flex pb-2">
+        <h5 class="pt-2 mr-3" style="width: 90px;"><strong>登録情報</strong></h5>
           <%= link_to "編集する", edit_customers_path, class: "btn btn-success px-4" %>
-        </div>
       </div>
 
       <div class="row">
         <div class="col-12 col-lg-8">
-          <table class="table table-bordered">
+          <table class="table table-bordered mb-3">
             <tbody>
               <tr>
                 <td class="bg-light w-25">氏名</td>
@@ -61,18 +59,14 @@
         </div>
       </div>
 
-      <div class="row mb-3">
-        <h5 class="col-3 col-lg-2 pt-2"><strong>配送先</strong></h5>
-        <div class="col-auto p-0">
-          <%= link_to "一覧を見る", addresses_path, class: "btn btn-primary px-4" %>
-        </div>
+      <div class="d-flex pb-3">
+        <h5 class="pt-2 mr-3" style="width: 90px;"><strong>配送先</strong></h5>
+        <%= link_to "一覧を見る", addresses_path, class: "btn btn-primary px-4" %>
       </div>
 
-      <div class="row">
-        <h5 class="col-3 col-lg-2"><strong>注文履歴</strong></h5>
-        <div class="col-auto p-0">
-          <%= link_to "一覧を見る", orders_path, class: "btn btn-primary px-4" %>
-        </div>
+      <div class="d-flex">
+        <h5 class="pt-2 mr-3" style="width: 90px;"><strong>注文履歴</strong></h5>
+        <%= link_to "一覧を見る", orders_path, class: "btn btn-primary px-4" %>
       </div>
 
     </div>
