@@ -7,8 +7,11 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
-    current_customer.update(customer_params)
-    redirect_to customer_params
+    if current_customer.update(customer_params)
+      redirect_to customer_params
+    else
+      render :edit
+    end
   end
 
   def leave

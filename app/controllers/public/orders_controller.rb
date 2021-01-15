@@ -21,25 +21,35 @@ class Public::OrdersController < ApplicationController
 
     @cart_items = current_customer.cart_items
     @order.postage = 800
-    render action: :confirm
+    if @order.postal_code.presence && @order.address.presence && @order.name.presence
+      render :confirm
+    else
+      @addresses = current_customer.addresses
+      render :new
+    end
   end
 
   def create
     @order = current_customer.orders.new(order_params)
-    @order.save
+    if @order.save
 
-    @cart_items = current_customer.cart_items
-    @cart_items.each do |cart_item|
-      OrderItem.create(
-        order_id: @order.id,
-        item_id: cart_item.item.id,
-        amount: cart_item.amount,
-        purchase_price: cart_item.item.price
-      )
+      @cart_items = current_customer.cart_items
+      @cart_items.each do |cart_item|
+        OrderItem.create(
+          order_id: @order.id,
+          item_id: cart_item.item.id,
+          amount: cart_item.amount,
+          purchase_price: cart_item.item.price
+        )
+      end
+
+      @cart_items.destroy_all
+      redirect_to thank_order_path
+
+    else
+      @addresses = current_customer.addresses
+      render :new
     end
-
-    @cart_items.destroy_all
-    redirect_to thank_order_path
   end
 
   def thank

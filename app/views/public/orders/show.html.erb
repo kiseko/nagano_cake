@@ -82,16 +82,8 @@
                 <td><%= order_item.purchase_price %></td>
                 <td><%= order_item.amount %></td>
                 <% total_price = order_item.purchase_price * order_item.amount %>
-                  <td><%= total_price.to_s(:delimited) %></td>
-                <% if order_item.production_status == "製作不可" %>
-                  <td>製作不可</td>
-                <% elsif order_item.production_status  == "製作待ち" %>
-                  <td>製作待ち</td>
-                <% elsif order_item.production_status  == "製作中" %>
-                  <td>製作中</td>
-                <% elsif order_item.production_status  == "製作完了" %>
-                  <td>製作完了</td>
-                <% end %>
+                <td><%= total_price.to_s(:delimited) %></td>
+                <td><%= order_item.production_status %></td>
               </tr>
             <% end %>
           </tbody>

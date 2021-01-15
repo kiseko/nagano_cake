@@ -3,6 +3,12 @@ class OrderItem < ApplicationRecord
   belongs_to :order
   belongs_to :item
 
+  validates :order_id, presence: true
+  validates :item_id, presence: true
+  validates :amount, presence: true
+  validates :purchase_price, presence: true
+  validates :production_status, presence: true
+
   enum production_status: {
     "製作不可": 0,
     "製作待ち": 1,
