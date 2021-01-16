@@ -12,7 +12,11 @@
           <p class="mb-0">購入者</p>
         </div>
         <div class="col-sm-8">
-          <p class="lead"><%= @order.customer.last_name + @order.customer.first_name %></p>
+          <p class="lead">
+            <%= link_to admin_customer_path(@order.customer_id) do %>
+              <%= @order.customer.last_name + @order.customer.first_name %>
+            <% end %>
+          </p>
         </div>
       </div>
 
