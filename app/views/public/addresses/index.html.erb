@@ -11,6 +11,16 @@
         <div class="row mx-2">
           <div class="col-md-10 mx-auto pb-4">
 
+            <% if @address.errors.any? %>
+              <div class="pb-2 text-danger">
+                <ul>
+                  <% @address.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
             <div class="form-group row">
               <p class="col-lg-3 pt-1">郵便番号</p>
               <%= f.text_field :postal_code, placeholder:"0000000", class: "form-control col-lg-6" %>

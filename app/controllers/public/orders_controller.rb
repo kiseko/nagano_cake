@@ -35,6 +35,7 @@ class Public::OrdersController < ApplicationController
       render :confirm
     else
       @addresses = current_customer.addresses
+      flash.now[:notice] = "--新しいお届け先に不備があります--"
       render :new
     end
   end

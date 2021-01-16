@@ -20,9 +20,9 @@ class Public::CustomersController < ApplicationController
   end
 
   def resign
-    current_customer.update(customer_params)
+    current_customer.update(is_active: false)
+    reset_session
     redirect_to root_path
-
   end
 
   private

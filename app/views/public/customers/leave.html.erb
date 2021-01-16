@@ -19,10 +19,7 @@
               <%= link_to "退会しない", customers_path, class:"btn btn-primary mt-3 px-4" %>
             </div>
             <div class="col-md-6 text-center p-0">
-              <%= form_with model: current_customer, url: resign_customer_path, local: true do |f| %>
-                <%= f.hidden_field :is_active, value: false %>
-                <%= f.submit "退会する", class:"btn btn-danger mt-3 px-4" %>
-              <% end %>
+              <%= link_to "退会する", resign_customer_path, method: :patch, class:"btn btn-danger mt-3 px-4" %>
             </div>
           </div>
 

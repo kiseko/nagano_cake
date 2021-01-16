@@ -11,6 +11,16 @@
         <div class="row mx-2">
           <div class="col-lg-9 mx-auto">
 
+            <% if @customer.errors.any? %>
+              <div class="pb-2 text-danger">
+                <ul>
+                  <% @customer.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
             <div class="form-group row">
               <p class="col-md-3 pt-1 mb-0">会員ID</p>
               <p class="col-md-9 pt-1"><%= @customer.id %></p>

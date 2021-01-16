@@ -11,35 +11,45 @@
         <div class="row mx-2">
           <div class="col-lg-9 mx-auto">
 
+            <% if current_customer.errors.any? %>
+              <div class="pb-2 text-danger">
+                <ul>
+                  <% current_customer.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
             <div class="form-group row">
-              <p class="col-md-3 pt-1">名前</p>
+              <p class="col-md-3 pt-1 mb-0">名前</p>
               <%= f.text_field :last_name, autofocus: true, placeholder:"長野", class: "form-control col-5 col-sm-4" %>
               <%= f.text_field :first_name, placeholder:"恵子", class: "form-control col-5 col-sm-4 offset-1" %>
             </div>
 
             <div class="form-group row">
-              <p class="col-md-3 pt-1">フリガナ</p>
+              <p class="col-md-3 pt-1 mb-0">フリガナ</p>
               <%= f.text_field :last_name_kana, placeholder:"ナガノ", class: "form-control col-5 col-sm-4" %>
               <%= f.text_field :first_name_kana, placeholder:"ケイコ", class: "form-control col-5 col-sm-4 offset-1" %>
             </div>
 
             <div class="form-group row">
-              <p class="col-md-3 pt-1">郵便番号</p>
+              <p class="col-md-3 pt-1 mb-0">郵便番号</p>
               <%= f.text_field :postal_code, placeholder:"0000000", class: "form-control col-md-9" %>
             </div>
 
             <div class="form-group row">
-              <p class="col-md-3 pt-1">住所</p>
+              <p class="col-md-3 pt-1 mb-0">住所</p>
               <%= f.text_field :address, placeholder:"東京都渋⾕区代々⽊神園町0-0", class: "form-control col-md-9" %>
             </div>
 
             <div class="form-group row">
-              <p class="col-md-3 pt-1">電話番号</p>
+              <p class="col-md-3 pt-1 mb-0">電話番号</p>
               <%= f.text_field :telephone_number, placeholder:"0000000000", class: "form-control col-md-9" %>
             </div>
 
             <div class="form-group row">
-              <p class="col-md-3 pt-1">メールアドレス</p>
+              <p class="col-md-3 pt-1 mb-0">メールアドレス</p>
               <%= f.text_field :email, autocomplete: "email", placeholder:"sample@example.com", class: "form-control col-md-9" %>
             </div>
 

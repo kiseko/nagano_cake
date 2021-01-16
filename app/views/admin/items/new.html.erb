@@ -10,6 +10,16 @@
         <div class="row mx-2">
           <div class="col-lg-8 col-md-10 mx-auto">
 
+            <% if @item.errors.any? %>
+              <div class="pb-2 text-danger">
+                <ul>
+                  <% @item.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+
             <div class="form-group row">
               <p class="col-md-4 mb-0">商品画像</p>
               <%= f.attachment_field :image, class: "form-control-file col-md-8" %>
@@ -27,7 +37,7 @@
 
             <div class="form-group row">
               <p class="col-md-4 pt-1 mb-0">ジャンル</p>
-              <%= f.collection_select(:genre_id, @genres, :id, :name, {prompt: "--選択してください--"}, {class: "form-control col-md-8"}) %>
+              <%= f.collection_select(:genre_id, Genre.all, :id, :name, {class: "form-control col-md-8"}) %>
             </div>
 
             <div class="row form-group">

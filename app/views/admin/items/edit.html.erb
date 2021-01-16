@@ -3,12 +3,22 @@
     <div class="col-md-10 mx-auto">
 
       <div class="mt-4 mb-4 bg-light d-inline-block">
-        <h4 class="px-2 pt-2">商品新規登録</h4>
+        <h4 class="px-2 pt-2">商品編集</h4>
       </div>
 
       <%= form_with model: @item, url: admin_item_path(@item.id), local: true do |f| %>
         <div class="row mx-2">
           <div class="col-lg-8 col-md-10 mx-auto">
+
+            <% if @item.errors.any? %>
+              <div class="pb-2 text-danger">
+                <ul>
+                  <% @item.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
 
             <div class="form-group row">
               <p class="col-md-4 mb-0">商品画像</p>
@@ -27,7 +37,7 @@
 
             <div class="form-group row">
               <p class="col-md-4 pt-1 mb-0">ジャンル</p>
-              <%= f.collection_select(:genre_id, @genres, :id, :name, {prompt: "--選択してください--"}, {class: "form-control col-md-8"}) %>
+              <%= f.collection_select(:genre_id, @genres, :id, :name, {class: "form-control col-md-8"}) %>
             </div>
 
             <div class="row form-group">
