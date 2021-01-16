@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container", style="min-width: 600px;">
 
   <div class="row">
     <div class="col-md-10 mx-auto">
@@ -22,18 +22,19 @@
               <% array = [] %>
               <% @cart_items.each do |cart_item| %>
                 <tr>
-                  <td>
+                  <td class="align-middle">
+                    <%= attachment_image_tag cart_item.item, :image, :fill, 100, 75, format: "jpg", class: "img-fluid" %>
                     <%= cart_item.item.name %>
                   </td>
-                  <td>
-                    <%= cart_item.item.price.to_s(:delimited) %>
+                  <td class="align-middle">
+                    <%= cart_item.item.price.to_s(:delimited) %>円
                   </td>
-                  <td  class="form-group">
+                  <td  class="form-group align-middle">
                     <%= cart_item.amount %>
                   </td>
-                  <td>
+                  <td class="align-middle">
                     <% subtotal = cart_item.item.price*cart_item.amount %>
-                    <%= subtotal.to_s(:delimited) %>
+                    <%= subtotal.to_s(:delimited) %>円
                   </td>
                 </tr>
                 <% array << subtotal %>
@@ -48,21 +49,21 @@
               <tr>
                 <td class="bg-light">送料</td>
                 <td>
-                  <%= @order.postage.to_s(:delimited) %>
+                  <%= @order.postage.to_s(:delimited) %>円
                 </td>
               </tr>
               <tr>
                 <td class="bg-light">商品合計</td>
                 <td>
                   <% @total_price = array.sum %>
-                  <%= @total_price.to_s(:delimited) %>
+                  <%= @total_price.to_s(:delimited) %>円
                 </td>
               </tr>
               <tr>
                 <td class="bg-light">請求金額</td>
                 <td>
                   <% amount_billed = @order.postage + @total_price %>
-                  <%= amount_billed.to_s(:delimited) %>
+                  <%= amount_billed.to_s(:delimited) %>円
                 </td>
               </tr>
             </tbody>

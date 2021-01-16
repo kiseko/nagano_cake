@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container", style="min-width: 770px;">
 
   <% if @cart_items.present? %>
     <div class="row">
@@ -36,24 +36,25 @@
                 <% array = [] %>
                 <% @cart_items.each do |cart_item| %>
                   <tr>
-                    <td>
+                    <td class="align-middle">
+                      <%= attachment_image_tag cart_item.item, :image, :fill, 100, 75, format: "jpg", class: "img-fluid" %>
                       <%= cart_item.item.name %>
                     </td>
-                    <td>
-                      <%= cart_item.item.price.to_s(:delimited) %>
+                    <td class="align-middle">
+                      <%= cart_item.item.price.to_s(:delimited) %>円
                     </td>
-                    <td  class="form-group">
+                    <td  class="form-group align-middle">
                       <%= form_with model: cart_item, url: cart_item_path(cart_item.id), local: true do |f| %>
                         <%= f.select :amount, [["1",1],["2",2],["3",3],["4",4],["5",5],["6",6],["7",7],["8",8],["9",9],["10",10]], prompt: "個数選択", class: "form-control" %>
                         <%= f.submit "変更", class: "btn btn-success" %>
                       <% end %>
                     </td>
-                    <td>
+                    <td class="form-group align-middle">
                       <% subtotal = cart_item.item.price*cart_item.amount %>
                       <%= subtotal.to_s(:delimited) %>円
                     </td>
-                    <td class="text-center">
-                      <%= link_to "削除する", cart_item_path(cart_item.id), class: "btn btn-danger text-nowrap", method: :delete %>
+                    <td class="text-center align-middle px-0">
+                      <%= link_to "削除する", cart_item_path(cart_item.id), class: "btn btn-danger", method: :delete %>
                     </td>
                   </tr>
                   <% array << subtotal %>
