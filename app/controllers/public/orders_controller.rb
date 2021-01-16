@@ -2,6 +2,14 @@ class Public::OrdersController < ApplicationController
 
   before_action :authenticate_customer!
 
+  before_action :ensure_current_customer, {only: [:show]}
+  def ensure_current_customer
+    if current_customer.orders.exists?(params[:id])
+    else
+      redirect_to orders_path
+    end
+  end
+
   def new
     @order = Order.new
     @addresses = current_customer.addresses
