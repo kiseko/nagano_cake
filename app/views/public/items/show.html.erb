@@ -17,6 +17,16 @@
           <h4 class="d-inline-block">￥<%= tax_included.to_s(:delimited) %></h4>
           <p class="d-inline-block">(税込)</p>
 
+          <% if @cart_item.errors.any? %>
+            <div class="pb-2 text-danger">
+              <ul>
+                <% @cart_item.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
           <%= form_with model: @cart_item, url: cart_items_path, local: true do |f| %>
             <div class="row">
               <div class="form-group col-sm-5 pt-2">

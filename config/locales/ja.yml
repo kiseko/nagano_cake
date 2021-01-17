@@ -28,8 +28,8 @@ ja:
       genre:
         name: ジャンル名
 
-      cart_items:
-        amount: 数量
+      cart_item:
+        amount: 個数
 
       order:
         name: 宛名
