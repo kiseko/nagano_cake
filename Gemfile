@@ -74,3 +74,4 @@ gem 'rails-i18n'
 gem 'enum_help'
 
 gem 'kaminari','~> 1.2.1'
+gem 'kaminari-bootstrap', '~> 3.0.1'
