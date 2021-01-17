@@ -6,8 +6,20 @@
 
       <div class="d-flex align-items-center">
         <div class="mt-4 mb-4 mr-auto">
+          <% if @genre.blank? %>
             <h4 class="px-2 pt-2">商品一覧<small>(全<%= @items.length %>件)<small></h4>
+          <% else %>
+            <h4 class="px-2 pt-2"><%= @genre.name %>一覧<small>(全<%= @items.length %>件)<small></h4>
+          <% end %>
         </div>
+        <%= form_with url: search_items_path, method: :get, local: true do |f| %>
+          <h6 class= "pt-3 mb-0 d-inline-block">
+            <%= collection_select :search_genre, :select_genre, @genres, :id, :name, {prompt: "--ジャンル検索--"}, class: "form-control" %>
+          </h6>
+          <%= f.button :type => "submit", class: "btn btn-primary mb-2" do %>
+            <i class='fas fa-search'></i>
+          <% end %>
+        <% end %>
       </div>
 
       <div class="row">
