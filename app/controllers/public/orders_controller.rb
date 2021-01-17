@@ -35,7 +35,7 @@ class Public::OrdersController < ApplicationController
       render :confirm
     else
       @addresses = current_customer.addresses
-      flash.now[:notice] = "--新しいお届け先に不備があります--"
+      flash.now[:alert] = "--新しいお届け先に不備があります--"
       render :new
     end
   end
@@ -46,11 +46,12 @@ class Public::OrdersController < ApplicationController
 
       @cart_items = current_customer.cart_items
       @cart_items.each do |cart_item|
+        @tax_included = (BigDecimal(cart_item.item.price) * BigDecimal("1.1")).ceil
         OrderItem.create(
           order_id: @order.id,
           item_id: cart_item.item.id,
           amount: cart_item.amount,
-          purchase_price: cart_item.item.price
+          purchase_price: @tax_included
         )
       end
 

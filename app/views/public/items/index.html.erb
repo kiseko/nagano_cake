@@ -10,19 +10,22 @@
 
       <div class="row">
         <% @items.each do |item| %>
-          <div class="col-4 col-md-3 px-2 pb-3">
-            <div class="card">
-              <%= link_to item_path(item.id) do %>
-                <%= attachment_image_tag item, :image, :fill, 400, 300, format: "jpg", class: "card-img-top" %>
-              <% end %>
-              <%= link_to item_path(item.id), class: "text-dark" do %>
-                <div class="card-body">
-                  <h6 class="card-title text-truncate"><%= item.name %></h6>
-                  <h6 class="card-text">￥<%= item.price.to_s(:delimited) %></h6>
-                </div>
-              <% end %>
+          <% if item.is_active? %>
+            <div class="col-4 col-md-3 px-2 pb-3">
+              <div class="card">
+                <%= link_to item_path(item.id) do %>
+                  <%= attachment_image_tag item, :image, size: "400x300", format: "jpg", class: "card-img-top img-fluid" %>
+                <% end %>
+                <%= link_to item_path(item.id), class: "text-dark" do %>
+                  <div class="card-body">
+                    <h6 class="card-title text-truncate"><%= item.name %></h6>
+                    <% tax_included = (BigDecimal(item.price) * BigDecimal("1.1")).ceil %>
+                    <h6 class="card-text">￥<%= tax_included.to_s(:delimited) %></h6>
+                  </div>
+                <% end %>
+              </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
       </div>
 

@@ -23,17 +23,18 @@
               <% @cart_items.each do |cart_item| %>
                 <tr>
                   <td class="align-middle">
-                    <%= attachment_image_tag cart_item.item, :image, :fill, 100, 75, format: "jpg", class: "img-fluid" %>
+                    <%= attachment_image_tag cart_item.item, :image, size: ("100x75"), format: "jpg", class: "img-fluid" %>
                     <%= cart_item.item.name %>
                   </td>
                   <td class="align-middle">
-                    <%= cart_item.item.price.to_s(:delimited) %>円
+                    <% tax_included = (BigDecimal(cart_item.item.price) * BigDecimal("1.1")).ceil %>
+                    <%= tax_included.to_s(:delimited) %>円
                   </td>
                   <td  class="form-group align-middle">
                     <%= cart_item.amount %>
                   </td>
                   <td class="align-middle">
-                    <% subtotal = cart_item.item.price*cart_item.amount %>
+                    <% subtotal = tax_included * cart_item.amount %>
                     <%= subtotal.to_s(:delimited) %>円
                   </td>
                 </tr>
