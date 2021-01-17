@@ -39,8 +39,8 @@
                   <div class="form_check ml-5 pb-4">
                     <%= radio_button_tag :select_address, "registration_address" %>
                     <%= f.label :select_address, "登録済住所から選択", class: "form-check-label" %>
-                    <div class="pt-2">
-                      <%= collection_select :r_ad, :registration_address, @addresses, :id, :registration_address_info %>
+                    <div class="form-group pt-2">
+                      <%= collection_select :r_ad, :registration_address, @addresses, :id, :registration_address_info, {}, class: "form-control" %>
                     </div>
                   </div>
                 <% end %>
@@ -51,8 +51,8 @@
 
                   <span class="pl-2 text-danger"><%= flash[:alert] %></span>
 
-                  <div class="form-group row pt-2 pb-1 mb-lg-0">
-                    <p class="col-lg-3 mb-0">郵便番号</p>
+                  <div class="form-group row py-2">
+                    <p class="col-lg-3 pt-1 mb-0">郵便番号</p>
                     <%= f.text_field :postal_code, placeholder:"0000000(ハイフンなし)", class: "form-control col-lg-6" %>
                   </div>
 

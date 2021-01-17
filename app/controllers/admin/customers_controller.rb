@@ -25,7 +25,7 @@ class Admin::CustomersController < ApplicationController
 
   def order
     @customer = Customer.find(params[:id])
-    @orders = @customer.orders
+    @orders = @customer.orders.page(params[:page]).per(10)
     render template: "admin/homes/top"
   end
 

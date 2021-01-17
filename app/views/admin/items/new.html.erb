@@ -37,7 +37,7 @@
 
             <div class="form-group row">
               <p class="col-md-4 pt-1 mb-0">ジャンル</p>
-              <%= f.collection_select(:genre_id, Genre.all, :id, :name, {class: "form-control col-md-8"}) %>
+              <%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "--選択してください--"}, class: "form-control col-md-8" %>
             </div>
 
             <div class="row form-group">

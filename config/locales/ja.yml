@@ -13,7 +13,11 @@ ja:
         postal_code: 郵便番号
         telephone_number: 電話番号
 
-      adress:
+      admin:
+        email: メールアドレス
+        encrypted_password: パスワード
+
+      address:
         address: 住所
         name: 宛名
         postal_code: 郵便番号

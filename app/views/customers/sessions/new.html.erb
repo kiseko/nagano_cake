@@ -13,8 +13,11 @@
       </div>
 
       <%= form_with model: @customer, url: customer_session_path, local: true do |f| %>
+
         <div class="row mx-2">
           <div class="col-lg-9 mx-auto">
+
+            <%= render "layouts/devise_message" %>
 
             <div class="form-group row">
               <p class="col-lg-3 pt-1 mb-0">メールアドレス</p>

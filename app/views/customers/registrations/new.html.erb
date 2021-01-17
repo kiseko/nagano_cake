@@ -7,10 +7,10 @@
       </div>
 
       <%= form_with model: @customer, url: customer_registration_path, id: 'new_admin', class: 'new_admin', local: true do |f| %>
-        <%= render "customers/shared/error_messages", resource: resource %>
-
         <div class="row mx-2">
           <div class="col-lg-9 mx-auto">
+
+            <%= render "customers/shared/error_messages", resource: resource %>
 
             <div class="form-group row">
               <p class="col-md-3 pt-1 mb-0">名前</p>

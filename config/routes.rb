@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     get "customers/leave" => "customers#leave", as: "leave_customer"
     patch "customers/resign" => "customers#resign", as: "resign_customer"
     resource :customers, only: [:show, :edit, :update]
+    get "items/search" => "items#search", as: "search_items"
     resources :items, only: [:index, :show]
     delete "cart_items" => "cart_items#destroy_all", as: "destroy_all_cart_items"
     resources :cart_items, only: [:create, :index, :update, :destroy]

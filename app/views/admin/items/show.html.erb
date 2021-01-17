@@ -9,7 +9,7 @@
 
       <div class="row">
 
-        <div class="col-md-4 mb-2">
+        <div class="col-md-4 mb-3">
           <%= attachment_image_tag @item, :image, size: "800x600", format: "jpg", class: "img-fluid" %>
         </div>
 
@@ -75,7 +75,7 @@
 
       </div>
 
-      <div class="text-center pt-4">
+      <div class="text-center pt-3 pb-5">
         <%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-success" %>
       </div>
 
