@@ -8,7 +8,7 @@ class Public::AddressesController < ApplicationController
     if @address.save
       redirect_to addresses_path
     else
-       @addresses = Address.page(params[:page]).per(3)
+       @addresses = current_customer.addresses.page(params[:page]).per(3)
       render :index
     end
   end
