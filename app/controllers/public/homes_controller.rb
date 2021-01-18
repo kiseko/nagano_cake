@@ -1,7 +1,8 @@
 class Public::HomesController < ApplicationController
-  
+
   def top
-    @items = Item.order(id: :desc).limit(4)
+    @active_items = Item.where(is_active: :true)
+    @items = @active_items.order(id: :desc).limit(4)
   end
 
   def about

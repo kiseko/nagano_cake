@@ -7,13 +7,13 @@ class Admin::GenresController < ApplicationController
     if @genre.save
       redirect_to admin_genres_path
     else
-      @genres = Genre.page(params[:page]).per(5)
+      @genres = Genre.page(params[:page]).per(5).reverse_order
       render :index
     end
   end
 
   def index
-    @genres = Genre.page(params[:page]).per(5)
+    @genres = Genre.page(params[:page]).per(5).reverse_order
     @genre = Genre.new
   end
 
